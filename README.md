@@ -43,8 +43,8 @@ npm run dev
 - `src/pages/contact.astro` – Contact info and social links
 - `src/pages/comments.astro` – Giscus standalone page
 - `src/content/posts/` – Markdown blog posts
-- `src/config/site.ts` – Site copy, nav, social, hero/about/contact text
-- `src/config/projects.ts` – Project entries (title, desc, tech, links, images)
+- `src/config/site.fr.ts` – Site copy, nav, social, hero/about/contact text
+- `src/config/projetcts.fr.ts` – Project entries (title, desc, tech, links, images)
 - `src/config/posts-images.ts` – Post slug → cover image mapping
 - `src/styles/` – Page-level styles (home, posts list/detail, contact, transitions)
 - `public/` – Static assets (images, svg, fonts)
