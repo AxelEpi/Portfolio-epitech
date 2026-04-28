@@ -1,11 +1,10 @@
 ---
 interface Props {
   title: string;
-  styles?: string[];
 }
 import Navigation from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro";
-const { title, styles = [] } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <html lang="fr">
@@ -15,8 +14,6 @@ const { title, styles = [] } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <!-- Injection des styles spécifiques à la page -->
-    {styles.map(style => <link rel="stylesheet" href={style} />)}
     <script>
       if ("scrollRestoration" in history) {
         history.scrollRestoration = "manual";

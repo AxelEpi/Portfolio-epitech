@@ -1,11 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { siteConfig } from "../config/site.fr";
+import "../styles/home.css";
+import "../styles/contact.css";
+import "../styles/page-transitions.css";
 ---
 
 <BaseLayout 
 title={siteConfig.contact.title}
-styles={["/styles/home.css", "/styles/contact.css", "/styles/page-transitions.css"]}
 >
       <main class="contact-page">
       <div class="contact-page-container page-content">
