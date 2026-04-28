@@ -1,32 +1,13 @@
 ---
-import "../styles/home.css";
-import "../styles/contact.css";
-import "../styles/page-transitions.css";
-import Navigation from "../components/Navigation.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import { siteConfig } from "../config/site.fr";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Get In Touch - Astro Blog</title>
-    <script>
-      // Disable browser scroll restoration and ensure page starts at top
-      if ('scrollRestoration' in history) {
-        history.scrollRestoration = 'manual';
-      }
-      // Immediately scroll to top on page load
-      window.scrollTo(0, 0);
-    </script>
-  </head>
-  <body>
-    <Navigation />
-    
-    <main class="contact-page">
+<BaseLayout 
+title={siteConfig.contact.title}
+styles={["/styles/home.css", "/styles/contact.css", "/styles/page-transitions.css"]}
+>
+      <main class="contact-page">
       <div class="contact-page-container page-content">
         <div class="contact-header contact-header-animate">
           <h1 class="contact-title">{siteConfig.contact.title}</h1>
@@ -95,24 +76,7 @@ import { siteConfig } from "../config/site.fr";
         </div>
       </div>
     </main>
-
-    <Footer />
-
-    <script>
-      // Ensure scroll position is at top after DOM loads
-      document.addEventListener('DOMContentLoaded', () => {
-        window.scrollTo(0, 0);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-        }, 0);
-      });
-      // Also ensure on page show (handles back/forward navigation)
-      window.addEventListener('pageshow', (event) => {
-        if (event.persisted) {
-          window.scrollTo(0, 0);
-        }
-      });
-
+     <script>
       // Initialize page transition animations
       document.addEventListener('DOMContentLoaded', () => {
         // Trigger page content animation
@@ -140,6 +104,4 @@ import { siteConfig } from "../config/site.fr";
         });
       });
     </script>
-  </body>
-</html>
-
+</BaseLayout>

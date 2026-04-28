@@ -1,0 +1,44 @@
+---
+interface Props {
+  title: string;
+  styles?: string[];
+}
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+const { title, styles = [] } = Astro.props;
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <!-- Injection des styles spécifiques à la page -->
+    {styles.map(style => <link rel="stylesheet" href={style} />)}
+    <script>
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      window.scrollTo(0, 0);
+    </script>
+  </head>
+  <body>
+    <Navigation />
+    <slot />
+    <Footer />
+    <script>
+      // Ensure scroll position is at top after DOM loads
+      document.addEventListener("DOMContentLoaded", () => {
+        window.scrollTo(0, 0);
+        // Also ensure after a short delay to handle any layout shifts
+        setTimeout(() => { window.scrollTo(0, 0); }, 0);
+      });
+      // Also ensure on page show (handles back/forward navigation)
+      window.addEventListener("pageshow", (event) => {
+        if (event.persisted) { window.scrollTo(0, 0); }
+      });
+    </script>
+  </body>
+</html>
