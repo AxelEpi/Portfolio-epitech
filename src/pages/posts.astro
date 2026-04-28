@@ -3,8 +3,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import "../styles/home.css";
 import "../styles/posts.css";
 import "../styles/page-transitions.css";
-import Navigation from "../components/Navigation.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import { siteConfig } from "../config/site.fr";
 import { postImages, defaultPostImage } from "../config/posts-images";
 
@@ -117,25 +116,11 @@ const allTags = Array.from(
 ).sort();
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Blog Posts - Astro Blog</title>
-    <script>
-      // Disable browser scroll restoration and ensure page starts at top
-      if ("scrollRestoration" in history) {
-        history.scrollRestoration = "manual";
-      }
-      // Immediately scroll to top on page load
-      window.scrollTo(0, 0);
-    </script>
-  </head>
-  <body>
-    <Navigation />
 
+
+<BaseLayout 
+title={siteConfig.posts.title}
+>
     <main class="posts-page">
       <div class="posts-container page-content">
         <div class="posts-header posts-header-animate">
@@ -258,11 +243,6 @@ const allTags = Array.from(
         </div>
       </div>
     </main>
-
-    <Footer />
-  </body>
-</html>
-
 <script>
   // Ensure scroll position is at top after DOM loads
   document.addEventListener("DOMContentLoaded", () => {
@@ -445,3 +425,4 @@ const allTags = Array.from(
     });
   });
 </script>
+</BaseLayout>

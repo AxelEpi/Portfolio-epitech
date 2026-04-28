@@ -1,33 +1,16 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../config/site.fr";
+import GiscusComments from "../components/GiscusComments";
 import "../styles/home.css";
 import "../styles/comments.css";
 import "../styles/page-transitions.css";
-import Navigation from "../components/Navigation.astro";
-import Footer from "../components/Footer.astro";
-import GiscusComments from "../components/GiscusComments";
-import { siteConfig } from "../config/site.fr";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Comments & Discussion - Astro Blog</title>
-    <script>
-      // Disable browser scroll restoration and ensure page starts at top
-      if ("scrollRestoration" in history) {
-        history.scrollRestoration = "manual";
-      }
-      // Immediately scroll to top on page load
-      window.scrollTo(0, 0);
-    </script>
-  </head>
-  <body>
-    <Navigation />
-
-    <main class="comments-page">
+<BaseLayout 
+title={siteConfig.comments.title}
+>
+     <main class="comments-page">
       <div class="comments-page-container page-content">
         <div class="comments-header comments-header-animate">
           <h1 class="comments-title">{siteConfig.comments.title}</h1>
@@ -117,52 +100,32 @@ import { siteConfig } from "../config/site.fr";
         </div>
       </div>
     </main>
-
-    <Footer />
-
-    <script>
-      // Ensure scroll position is at top after DOM loads
-      document.addEventListener("DOMContentLoaded", () => {
-        window.scrollTo(0, 0);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-        }, 0);
-      });
-      // Also ensure on page show (handles back/forward navigation)
-      window.addEventListener("pageshow", (event) => {
-        if (event.persisted) {
-          window.scrollTo(0, 0);
-        }
-      });
-
+     <script>
       // Initialize page transition animations
-      document.addEventListener("DOMContentLoaded", () => {
+      document.addEventListener('DOMContentLoaded', () => {
         // Trigger page content animation
-        const pageContent = document.querySelector(".page-content");
+        const pageContent = document.querySelector('.page-content');
         if (pageContent) {
           requestAnimationFrame(() => {
-            pageContent.classList.add("visible");
+            pageContent.classList.add('visible');
           });
         }
 
         // Trigger header animation
-        const header = document.querySelector(".comments-header-animate");
+        const header = document.querySelector('.comments-header-animate');
         if (header) {
           requestAnimationFrame(() => {
-            header.classList.add("visible");
+            header.classList.add('visible');
           });
         }
 
-        // Trigger content animations
-        const contentElements = document.querySelectorAll(
-          ".comments-content-animate"
-        );
-        contentElements.forEach((element) => {
+        // Trigger card animations
+        const cards = document.querySelectorAll('.comments-card-animate');
+        cards.forEach((card) => {
           requestAnimationFrame(() => {
-            element.classList.add("visible");
+            card.classList.add('visible');
           });
         });
       });
     </script>
-  </body>
-</html>
+</BaseLayout>
