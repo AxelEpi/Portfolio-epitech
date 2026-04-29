@@ -1,296 +1,68 @@
 ---
+import { projectsConfig } from "../config/projects.fr";
+import { siteConfig } from "../config/site.fr";
+type HasTechnologies = { technologies: string[] };
+
+const allItems: HasTechnologies[] = [
+  ...projectsConfig.projects, 
+  ...projectsConfig.experiences
+];
+
+
+const totalProjects = projectsConfig.projects.length;
+
+const skillCount = allItems
+  .flatMap(p => p.technologies)
+  .reduce((acc, tech) => {
+    acc[tech] = (acc[tech] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
+const skills = Object.entries(skillCount).map(([name, count], index) => ({
+  name,
+  percentage: Math.round((count / totalProjects) * 100),
+  index,
+}));
+
+const CIRCUMFERENCE = 502.65;
 ---
 
 <section class="proficiency-section" id="proficiency-section">
   <div class="proficiency-content">
-    <h2 class="proficiency-title">Proficiency</h2>
+    <h2 class="proficiency-title">{siteConfig.Skills.title}</h2>
     <div class="skills-grid">
-      <div class="skill-card" data-percentage="95">
-        <div class="skill-name skill-name-1">React</div>
-        <div class="circular-progress">
-          <svg class="progress-ring" width="180" height="180">
-            <circle
-              class="progress-ring-circle-bg"
-              stroke="#f0f0f0"
-              stroke-width="10"
-              fill="transparent"
-              r="80"
-              cx="90"
-              cy="90"></circle>
-            <circle
-              class="progress-ring-circle"
-              stroke="url(#gradient-1)"
-              stroke-width="10"
-              fill="transparent"
-              r="80"
-              cx="90"
-              cy="90"
-              stroke-dasharray="502.65"
-              stroke-dashoffset="502.65"
-              data-circumference="502.65"></circle>
-            <defs>
-              <linearGradient
-                id="gradient-1"
-                gradientUnits="userSpaceOnUse"
-                x1="90"
-                y1="10"
-                x2="170"
-                y2="90"
-              >
-                <stop offset="0%" style="stop-color:#9dddd4;stop-opacity:1"
-                ></stop>
-                <stop offset="50%" style="stop-color:#88d4c9;stop-opacity:1"
-                ></stop>
-                <stop
-                  offset="100%"
-                  style="stop-color:#76cfc5;stop-opacity:1"></stop>
-              </linearGradient>
-            </defs>
-          </svg>
-          <div class="circular-progress-text skill-color-1">
-            <span class="skill-percentage" data-target="95">0</span>%
+      {skills.map((skill) => (
+        <div class="skill-card" data-percentage={skill.percentage}>
+          <div class={`skill-name skill-name-${(skill.index % 6) + 1}`}>{skill.name}</div>
+          <div class="circular-progress">
+            <svg class="progress-ring" width="180" height="180">
+              <circle class="progress-ring-circle-bg" stroke="#f0f0f0" stroke-width="10" fill="transparent" r="80" cx="90" cy="90" />
+              <circle
+                class="progress-ring-circle"
+                stroke={`url(#gradient-${(skill.index % 3) + 1})`}
+                stroke-width="10"
+                fill="transparent"
+                r="80" cx="90" cy="90"
+                stroke-dasharray={CIRCUMFERENCE}
+                stroke-dashoffset={CIRCUMFERENCE}
+                data-circumference={CIRCUMFERENCE}
+              />
+              <defs>
+                <linearGradient id={`gradient-${(skill.index % 3) + 1}`} gradientUnits="userSpaceOnUse" x1="90" y1="10" x2="170" y2="90">
+                  <stop offset="0%" style="stop-color:#9dddd4;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#76cfc5;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class={`circular-progress-text skill-color-${(skill.index % 6) + 1}`}>
+              <span class="skill-percentage" data-target={skill.percentage}>0</span>%
+            </div>
           </div>
         </div>
-      </div>
-      <div class="skill-card" data-percentage="90">
-        <div class="skill-name skill-name-2">JavaScript</div>
-        <div class="circular-progress">
-          <svg class="progress-ring" width="180" height="180">
-            <circle
-              class="progress-ring-circle-bg"
-              stroke="#f0f0f0"
-              stroke-width="10"
-              fill="transparent"
-              r="80"
-              cx="90"
-              cy="90"></circle>
-            <circle
-              class="progress-ring-circle"
-              stroke="url(#gradient-2)"
-              stroke-width="10"
-              fill="transparent"
-              r="80"
-              cx="90"
-              cy="90"
-              stroke-dasharray="502.65"
-              stroke-dashoffset="502.65"
-              data-circumference="502.65"></circle>
-            <defs>
-              <linearGradient
-                id="gradient-2"
-                gradientUnits="userSpaceOnUse"
-                x1="90"
-                y1="10"
-                x2="170"
-                y2="90"
-              >
-                <stop offset="0%" style="stop-color:#ffd966;stop-opacity:1"
-                ></stop>
-                <stop offset="50%" style="stop-color:#ffc933;stop-opacity:1"
-                ></stop>
-                <stop
-                  offset="100%"
-                  style="stop-color:#ffb400;stop-opacity:1"></stop>
-              </linearGradient>
-            </defs>
-          </svg>
-          <div class="circular-progress-text skill-color-2">
-            <span class="skill-percentage" data-target="90">0</span>%
-          </div>
-        </div>
-      </div>
-      <div class="skill-card" data-percentage="88">
-        <div class="skill-name skill-name-3">TypeScript</div>
-        <div class="circular-progress">
-          <svg class="progress-ring" width="180" height="180">
-            <circle
-              class="progress-ring-circle-bg"
-              stroke="#f0f0f0"
-              stroke-width="10"
-              fill="transparent"
-              r="80"
-              cx="90"
-              cy="90"></circle>
-            <circle
-              class="progress-ring-circle"
-              stroke="url(#gradient-3)"
-              stroke-width="10"
-              fill="transparent"
-              r="80"
-              cx="90"
-              cy="90"
-              stroke-dasharray="502.65"
-              stroke-dashoffset="502.65"
-              data-circumference="502.65"></circle>
-            <defs>
-              <linearGradient
-                id="gradient-3"
-                gradientUnits="userSpaceOnUse"
-                x1="90"
-                y1="10"
-                x2="170"
-                y2="90"
-              >
-                <stop offset="0%" style="stop-color:#e88b8b;stop-opacity:1"
-                ></stop>
-                <stop offset="50%" style="stop-color:#ea7876;stop-opacity:1"
-                ></stop>
-                <stop
-                  offset="100%"
-                  style="stop-color:#ec6664;stop-opacity:1"></stop>
-              </linearGradient>
-            </defs>
-          </svg>
-          <div class="circular-progress-text skill-color-3">
-            <span class="skill-percentage" data-target="88">0</span>%
-          </div>
-        </div>
-      </div>
-      <div class="skill-card" data-percentage="85">
-        <div class="skill-name skill-name-4">Vue.js</div>
-        <div class="circular-progress">
-          <svg class="progress-ring" width="180" height="180">
-            <circle
-              class="progress-ring-circle-bg"
-              stroke="#f0f0f0"
-              stroke-width="10"
-              fill="transparent"
-              r="80"
-              cx="90"
-              cy="90"></circle>
-            <circle
-              class="progress-ring-circle"
-              stroke="url(#gradient-4)"
-              stroke-width="10"
-              fill="transparent"
-              r="80"
-              cx="90"
-              cy="90"
-              stroke-dasharray="502.65"
-              stroke-dashoffset="502.65"
-              data-circumference="502.65"></circle>
-            <defs>
-              <linearGradient
-                id="gradient-4"
-                gradientUnits="userSpaceOnUse"
-                x1="90"
-                y1="10"
-                x2="170"
-                y2="90"
-              >
-                <stop offset="0%" style="stop-color:#e88b8b;stop-opacity:1"
-                ></stop>
-                <stop offset="50%" style="stop-color:#ea7876;stop-opacity:1"
-                ></stop>
-                <stop
-                  offset="100%"
-                  style="stop-color:#ec6664;stop-opacity:1"></stop>
-              </linearGradient>
-            </defs>
-          </svg>
-          <div class="circular-progress-text skill-color-4">
-            <span class="skill-percentage" data-target="85">0</span>%
-          </div>
-        </div>
-      </div>
-      <div class="skill-card" data-percentage="92">
-        <div class="skill-name skill-name-5">Node.js</div>
-        <div class="circular-progress">
-          <svg class="progress-ring" width="180" height="180">
-            <circle
-              class="progress-ring-circle-bg"
-              stroke="#f0f0f0"
-              stroke-width="10"
-              fill="transparent"
-              r="80"
-              cx="90"
-              cy="90"></circle>
-            <circle
-              class="progress-ring-circle"
-              stroke="url(#gradient-5)"
-              stroke-width="10"
-              fill="transparent"
-              r="80"
-              cx="90"
-              cy="90"
-              stroke-dasharray="502.65"
-              stroke-dashoffset="502.65"
-              data-circumference="502.65"></circle>
-            <defs>
-              <linearGradient
-                id="gradient-5"
-                gradientUnits="userSpaceOnUse"
-                x1="90"
-                y1="10"
-                x2="170"
-                y2="90"
-              >
-                <stop offset="0%" style="stop-color:#9dddd4;stop-opacity:1"
-                ></stop>
-                <stop offset="50%" style="stop-color:#88d4c9;stop-opacity:1"
-                ></stop>
-                <stop
-                  offset="100%"
-                  style="stop-color:#76cfc5;stop-opacity:1"></stop>
-              </linearGradient>
-            </defs>
-          </svg>
-          <div class="circular-progress-text skill-color-5">
-            <span class="skill-percentage" data-target="92">0</span>%
-          </div>
-        </div>
-      </div>
-      <div class="skill-card" data-percentage="87">
-        <div class="skill-name skill-name-6">CSS</div>
-        <div class="circular-progress">
-          <svg class="progress-ring" width="180" height="180">
-            <circle
-              class="progress-ring-circle-bg"
-              stroke="#f0f0f0"
-              stroke-width="10"
-              fill="transparent"
-              r="80"
-              cx="90"
-              cy="90"></circle>
-            <circle
-              class="progress-ring-circle"
-              stroke="url(#gradient-6)"
-              stroke-width="10"
-              fill="transparent"
-              r="80"
-              cx="90"
-              cy="90"
-              stroke-dasharray="502.65"
-              stroke-dashoffset="502.65"
-              data-circumference="502.65"></circle>
-            <defs>
-              <linearGradient
-                id="gradient-6"
-                gradientUnits="userSpaceOnUse"
-                x1="90"
-                y1="10"
-                x2="170"
-                y2="90"
-              >
-                <stop offset="0%" style="stop-color:#ffd966;stop-opacity:1"
-                ></stop>
-                <stop offset="50%" style="stop-color:#ffc933;stop-opacity:1"
-                ></stop>
-                <stop
-                  offset="100%"
-                  style="stop-color:#ffb400;stop-opacity:1"></stop>
-              </linearGradient>
-            </defs>
-          </svg>
-          <div class="circular-progress-text skill-color-6">
-            <span class="skill-percentage" data-target="87">0</span>%
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>
-
 <script>
   // Number animation: count from 0 to target
   function animateNumber(
@@ -405,4 +177,3 @@
     observer.observe(proficiencySection);
   }
 </script>
-

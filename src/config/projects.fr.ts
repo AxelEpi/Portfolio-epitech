@@ -28,5 +28,13 @@ export const projectsConfig = {
       githubLink: "#",
     },
   ],
+  experiences: [
+    {
+      title: "Alternance Data Analyst — Clauger 3E",
+      description: "Assistant data analyst au sein du laboratoire numérique Clauger 3E à Brignais.",
+      technologies: ["Digdash", "Python", "SQL", "JavaScript"],
+      period: "2024 — présent",
+    }
+  ]
 };
 

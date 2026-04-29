@@ -4,6 +4,7 @@ interface Props {
 }
 import Navigation from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro";
+import Boutondaisyui from "../components/boutondaisyui.astro";
 const { title } = Astro.props;
 ---
 
@@ -24,6 +25,7 @@ const { title } = Astro.props;
   <body>
     <Navigation />
     <slot />
+    <Boutondaisyui />
     <Footer />
     <script>
       // Ensure scroll position is at top after DOM loads
