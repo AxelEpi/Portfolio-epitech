@@ -8,8 +8,8 @@ export const siteConfig = {
   // Navigation
   navigation: {
     home: "Accueil",
-    posts: "Projets",
-    contact: "Contact",
+    posts: "Expériences",
+    skills: "compétences",
     comments: "Commentaires",
   },
   
@@ -18,7 +18,7 @@ export const siteConfig = {
     prefix: "Je suis",
     name: "Axel LARGUIER",
     intro: "Étudiant Pré-MSc Tech @ Epitech Moulins · Data Analyst en alternance",
-    avatar: "/image/20943608.jpeg",
+    avatar: "/image/Photo.jpg",
     buttons: {
       viewPosts: "Voir les projets",
       contactMe: "Me contacter",
@@ -42,19 +42,19 @@ export const siteConfig = {
     title: "Contact",
     subtitle: "Je suis toujours ouvert à discuter de nouveaux projets, d'idées créatives ou d'opportunités de collaboration.",
     info: {
-      email: {
+       email: {
         label: "Email",
-        value: "test@example.com",
-        link: "mailto:test@example.com",
+        value: "axel.larguier@epitech.eu",
+        link: "axel.larguier@epitech.eu",
       },
       phone: {
-        label: "Téléphone",
-        value: "+1 test",
-        link: "tel:+1 test",
+        label: "Phone",
+        value: "06 21 46 12 70",
+        link: "tel:06 21 46 12 70",
       },
       location: {
-        label: "Localisation",
-        value: "San Francisco, CA",
+        label: "Location",
+        value: "Moulins sur Allier, France",
       },
     },
     followMe: {
@@ -75,7 +75,7 @@ export const siteConfig = {
   
   // Footer
   footer: {
-    copyright: "© 2026 Axel LARGUIER. Tous droits réservés.",
+    copyright: "© 2026 Axel LARGUIER. email : axel.larguier@epitech.eu tel : 06 21 46 12 70",
     github: {
       text: "Étoiler ce projet sur GitHub",
       url: "https://github.com/AxelEpi/Portfolio-epitech",
@@ -84,9 +84,12 @@ export const siteConfig = {
   
   // Posts Page
   posts: {
-    title: "Projets",
-    subtitle: "Découvrez mes derniers projets",
-    searchPlaceholder: "Rechercher des projets...",
+    title: "Expériences",
+    subtitle: "Découvrez mes dernieres expériences",
+    searchPlaceholder: "Rechercher des expériences...",
+  },
+  Skills: {
+    title: "Compétences"
   },
   
   // Comments Page

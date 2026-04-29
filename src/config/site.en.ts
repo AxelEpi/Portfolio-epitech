@@ -1,3 +1,6 @@
+import { title } from "framer-motion/client";
+import Skills from "../pages/skills.astro";
+
 // Site-wide configuration
 export const siteConfig = {
   // Site metadata
@@ -8,8 +11,8 @@ export const siteConfig = {
   // Navigation
   navigation: {
     home: "Home",
-    posts: "Projects",
-    contact: "Contact",
+    posts: "Experiences",
+    Skills: "skills",
     comments: "Comments",
   },
   
@@ -18,7 +21,7 @@ export const siteConfig = {
     prefix: "I am",
     name: "Axel LARGUIER",
     intro: "Pre-MSc Tech Student @ Epitech Moulins · Data Analyst Apprentice",
-    avatar: "/image/20943608.jpeg",
+    avatar: "/image/Photo.jpg",
     buttons: {
       viewPosts: "View Projects",
       contactMe: "Contact Me",
@@ -44,17 +47,17 @@ export const siteConfig = {
     info: {
       email: {
         label: "Email",
-        value: "test@example.com",
-        link: "mailto:test@example.com",
+        value: "axel.larguier@epitech.eu",
+        link: "axel.larguier@epitech.eu",
       },
       phone: {
         label: "Phone",
-        value: "+1 test",
-        link: "tel:+1 test",
+        value: "06 21 46 12 70",
+        link: "tel:06 21 46 12 70",
       },
       location: {
         label: "Location",
-        value: "San Francisco, CA",
+        value: "Moulins sur Allier, France",
       },
     },
     followMe: {
@@ -75,7 +78,7 @@ export const siteConfig = {
   
   // Footer
   footer: {
-    copyright: "© 2026 Axel LARGUIER. All rights reserved.",
+    copyright: "© 2026 Axel LARGUIER. email : axel.larguier@epitech.eu tel : 06 21 46 12 70",
     github: {
       text: "Star this project on GitHub",
       url: "https://github.com/AxelEpi/Portfolio-epitech",
@@ -84,9 +87,12 @@ export const siteConfig = {
   
   // Posts Page
   posts: {
-    title: "Projects",
-    subtitle: "Discover my latest projects",
-    searchPlaceholder: "Search projects...",
+    title: "Experiences",
+    subtitle: "Discover my latest experiences",
+    searchPlaceholder: "Search experiences...",
+  },
+  Skills: {
+    title: "Skills"
   },
   
   // Comments Page
